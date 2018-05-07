@@ -1,0 +1,16 @@
+{
+  "name": "hd-demo",
+  "version": "0.1.0",
+  "description": "Hd wallet, key derivation demo for different blockchains",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pluswave <pluswave@xiaofuxing.name>",
+  "license": "MIT",
+  "dependencies": {
+    "bip39": "^2.5.0",
+    "hdkey": "^0.8.0",
+    "web3": "^1.0.0-beta.34"
+  }
+}
