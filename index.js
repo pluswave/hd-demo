@@ -3,7 +3,7 @@ const utils = require('./utils');
 const bip39 = require('bip39');
 
 const wordList = bip39.generateMnemonic(
-    128,  // 128 + 32x (4>=x>=0), 每32bit得到3个字符, 默认 128
+    128,  // 128 + 32x (4>=x>=0), 每32bit得到3个单词, 默认 128bit
     undefined, // 随机缓存算法，默认使用 randombytes 库
     bip39.wordlists.EN // 字典列表，包含2048个单词或者字，默认英文
 );
