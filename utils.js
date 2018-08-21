@@ -2,6 +2,7 @@
 const hdkey = require('hdkey'); // bip32
 const bip39 = require('bip39');
 const Web3 = require('web3');
+const ECPair = require('bitcoinjs-lib').ECPair;
 
 const web3 = new Web3();
 
@@ -25,8 +26,28 @@ function getWeb3EthAccountFromMnemonic(mnemonic, options) {
     return account;
 }
 
+function getBitCoinECPair(mnemonic, options)
+{
+    var masterSeed = bip39.mnemonicToSeed(mnemonic);
+
+    var  masterNode = hdkey.fromMasterSeed(masterSeed);
+
+    const btcPath = `m/44'/0'/0'/0/0`;
+    var  node;
+    if( options && options.path ) {
+        node = masterNode.derive(options.path);
+    }
+    else {
+        node = masterNode.derive(btcPath); 
+    }
+
+    return ECPair.fromPrivateKey(node.privateKey);
+}
+
+
 
 module.exports = {
     getWeb3EthAccountFromMnemonic: getWeb3EthAccountFromMnemonic,
+    getBitCoinECPair: getBitCoinECPair,
     isValidMnemonic: bip39.validateMnemonic
 }

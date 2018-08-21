@@ -17,6 +17,8 @@ console.log( utils.getWeb3EthAccountFromMnemonic(
     {path: "m/44'/60'/0'/0"}).address // 默认path: m/44'/60'/0'/0/0
 );
 
+console.log( utils.getBitCoinECPair(wordList));
+
 const wordListCN = bip39.generateMnemonic(undefined, undefined, bip39.wordlists.chinese_simplified);
 console.log(wordListCN);
 console.log( utils.getWeb3EthAccountFromMnemonic(wordListCN).address);
