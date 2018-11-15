@@ -3,8 +3,7 @@ const hdkey = require('hdkey'); // bip32
 const bip39 = require('bip39');
 const Web3 = require('web3');
 const ECPair = require('bitcoinjs-lib').ECPair;
-const NETWORKS = require('bitcoinjs-lib').networks;
-var BigInteger = require('bigi');
+
 const web3 = new Web3();
 
 function getWeb3EthAccountFromMnemonic(mnemonic, options) {
@@ -42,11 +41,7 @@ function getBitCoinECPair(mnemonic, options)
         node = masterNode.derive(btcPath); 
     }
 
-    // return ECPair.fromPrivateKey(node.privateKey);
-
-    return new ECPair(BigInteger.fromBuffer(node.privateKey), null, {
-        network: NETWORKS.bitcoin
-    })
+    return ECPair.fromPrivateKey(node.privateKey);
 }
 
 

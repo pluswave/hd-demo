@@ -9,9 +9,8 @@
   "author": "Pluswave <pluswave@xiaofuxing.name>",
   "license": "MIT",
   "dependencies": {
-    "bigi": "^1.4.2",
     "bip39": "^2.5.0",
-    "bitcoinjs-lib": "^3.3.2",
+    "bitcoinjs-lib": "^4.0.1",
     "hdkey": "^0.8.0",
     "web3": "^1.0.0-beta.34"
   }
