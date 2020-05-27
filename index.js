@@ -13,7 +13,7 @@ console.log( utils.getWeb3EthAccountFromMnemonic(wordList).address);
 console.log (utils.isValidMnemonic(wordList));
 
 console.log( utils.getWeb3EthAccountFromMnemonic(
-    wordList, 
+    wordList,
     {path: "m/44'/60'/0'/0"}).address // 默认path: m/44'/60'/0'/0/0
 );
 

@@ -1,5 +1,5 @@
 
-const hdkey = require('hdkey'); // bip32
+const bip32 = require('bip32');
 const bip39 = require('bip39');
 const Web3 = require('web3');
 const ECPair = require('bitcoinjs-lib').ECPair;
@@ -10,15 +10,15 @@ function getWeb3EthAccountFromMnemonic(mnemonic, options) {
 
     var masterSeed = bip39.mnemonicToSeed(mnemonic);
 
-    var  masterNode = hdkey.fromMasterSeed(masterSeed);
+    var  masterNode = bip32.fromSeed(masterSeed);
 
     const metaMaskPath = `m/44'/60'/0'/0/0`;
     var  node;
     if( options && options.path ) {
-        node = masterNode.derive(options.path);
+        node = masterNode.derivePath(options.path);
     }
     else {
-        node = masterNode.derive(metaMaskPath); 
+        node = masterNode.derivePath(metaMaskPath);
     }
 
     var account = web3.eth.accounts.privateKeyToAccount('0x' + node.privateKey.toString('hex'));
@@ -30,15 +30,15 @@ function getBitCoinECPair(mnemonic, options)
 {
     var masterSeed = bip39.mnemonicToSeed(mnemonic);
 
-    var  masterNode = hdkey.fromMasterSeed(masterSeed);
+    var  masterNode = bip32.fromSeed(masterSeed);
 
     const btcPath = `m/44'/0'/0'/0/0`;
     var  node;
     if( options && options.path ) {
-        node = masterNode.derive(options.path);
+        node = masterNode.derivePath(options.path);
     }
     else {
-        node = masterNode.derive(btcPath); 
+        node = masterNode.derivePath(btcPath); 
     }
 
     return ECPair.fromPrivateKey(node.privateKey);
