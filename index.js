@@ -9,6 +9,7 @@ const wordList = bip39.generateMnemonic(
 );
 
 console.log(wordList);
+console.log(utils.getMasterNodeIdentifier(wordList).toString('hex'));
 console.log( utils.getWeb3EthAccountFromMnemonic(wordList).address);
 console.log (utils.isValidMnemonic(wordList));
 

@@ -6,11 +6,24 @@ const ECPair = require('bitcoinjs-lib').ECPair;
 
 const web3 = new Web3();
 
-function getWeb3EthAccountFromMnemonic(mnemonic, options) {
-
+function getMasterNode(mnemonic)
+{
     var masterSeed = bip39.mnemonicToSeed(mnemonic);
 
     var  masterNode = bip32.fromSeed(masterSeed);
+    
+    return masterNode;
+}
+
+function getMasterNodeIdentifier(mnemonic)
+{
+    var  masterNode = getMasterNode(mnemonic);
+    return masterNode.identifier;
+}
+
+function getWeb3EthAccountFromMnemonic(mnemonic, options) {
+
+    var  masterNode = getMasterNode(mnemonic);
 
     const metaMaskPath = `m/44'/60'/0'/0/0`;
     var  node;
@@ -28,10 +41,7 @@ function getWeb3EthAccountFromMnemonic(mnemonic, options) {
 
 function getBitCoinECPair(mnemonic, options)
 {
-    var masterSeed = bip39.mnemonicToSeed(mnemonic);
-
-    var  masterNode = bip32.fromSeed(masterSeed);
-
+    var  masterNode = getMasterNode(mnemonic);
     const btcPath = `m/44'/0'/0'/0/0`;
     var  node;
     if( options && options.path ) {
@@ -49,5 +59,6 @@ function getBitCoinECPair(mnemonic, options)
 module.exports = {
     getWeb3EthAccountFromMnemonic: getWeb3EthAccountFromMnemonic,
     getBitCoinECPair: getBitCoinECPair,
-    isValidMnemonic: bip39.validateMnemonic
+    isValidMnemonic: bip39.validateMnemonic,
+    getMasterNodeIdentifier
 }
