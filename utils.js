@@ -8,10 +8,8 @@ const web3 = new Web3();
 
 function getMasterNode(mnemonic)
 {
-    var masterSeed = bip39.mnemonicToSeed(mnemonic);
-
+    var masterSeed = bip39.mnemonicToSeedSync(mnemonic);
     var  masterNode = bip32.fromSeed(masterSeed);
-    
     return masterNode;
 }
 

@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "bip32": "^2.0.5",
-    "bip39": "^2.5.0",
+    "bip39": "^3.0.2",
     "bitcoinjs-lib": "^5.1.0",
     "web3": "^1.2.8"
   }
